@@ -11,14 +11,29 @@
             display: grid;
             place-content: center;
             place-items: center;
-            background-color: black;
+            background: #000;
         }
 
-        /* 🌈 7 Color Fire 3D Text */
+        img{
+            position: relative;
+            left: 1%;
+            width: 200px;
+            height: 200px;
+            border-radius: 10px;
+            box-shadow: 4px 5px;
+            background-color: rgb(89, 13, 121);
+        }
+
+        /* smooth scaling */
+        #btn-yes{
+            transition: transform 0.3s ease;
+        }
+
         h1{
             font-size: 3rem;
             font-weight: bold;
             text-align: center;
+
             background: linear-gradient(
                 90deg,
                 red,
@@ -30,20 +45,22 @@
                 violet
             );
             background-size: 400%;
-            background-clip: text;  
+
+            background-clip: text;
             -webkit-background-clip: text;
+
+            color: transparent;
             -webkit-text-fill-color: transparent;
 
-            animation: fire 2s linear infinite, glow 1.5s ease-in-out infinite alternate;
+            animation: fire 2s linear infinite,
+                       glow 1.5s ease-in-out infinite alternate;
         }
 
-        /* 🔥 Color movement */
         @keyframes fire {
-            0% { background-position: 0%; }
+            0%   { background-position: 0%; }
             100% { background-position: 400%; }
         }
 
-        /* 💡 3D Glow effect */
         @keyframes glow {
             from {
                 text-shadow:
@@ -58,23 +75,31 @@
                     6px 6px 30px violet;
             }
         }
-
-        img{
-            display: block;
-            margin: auto;
-            margin-top: 20px;
-            width: 200px;
-            border-radius: 10px;
-            
-        }
     </style>
 </head>
 
 <body class="w-100 vh-100">
-    <div class="container">
-        <h1>Yes, I love you too ❤️!</h1>
+    <div class="container h-auto text-center">
+        <h1>Do you love me!</h1>
 
-        <img src="https://media1.tenor.com/m/tZh8ejASFEQAAAAC/cute.gif" alt="">
+        <img src="https://c.tenor.com/qT2BYFdeY0oAAAAC/cute-cat.gif"  alt="">
+
+        <div class="d-flex justify-content-center gap-5 mt-3">
+            <button  onclick="growYes()"  id="btn-no"  class="btn btn-danger px-4"> No</button>
+
+            <a href="./link_ex_dom.html">
+                <button id="btn-yes" class="btn btn-primary px-4"> Yes</button>
+            </a>
+        </div>
     </div>
+
+    <script>
+        let scaleValue = 4;
+        const growYes = () => {
+            scaleValue += 0.8;
+            document.getElementById("btn-yes").style.transform =
+                `scale(${scaleValue})`;
+        }
+    </script>
 </body>
 </html>
